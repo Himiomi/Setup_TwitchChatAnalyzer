@@ -1,0 +1,24 @@
+version: '3'
+services:
+  sql_data:
+    image: hikachuu/sql_data
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+
+  grafana:
+    image: hikachuu/grafana:latest
+    ports:
+      - "3000:3000"
+    restart: always
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - u
+
+  java_getter:
+    image: hikachuu/java_getter:latest
+    ports:
+      - "8080:8080"
+    restart: always
