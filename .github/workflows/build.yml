@@ -100,21 +100,21 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore Dependencies
-      run: dotnet restore TwitchDownloaderCLI
+      run: dotnet restore .
     - name: Build Windows CLI
-      run: dotnet publish TwitchDownloaderCLI -p:PublishProfile=Windows -p:DebugType=None -p:DebugSymbols=false
+      run: dotnet publish . -p:PublishProfile=Windows -p:DebugType=None -p:DebugSymbols=false
     - name: Build Linux CLI
-      run: dotnet publish TwitchDownloaderCLI -p:PublishProfile=Linux -p:DebugType=None -p:DebugSymbols=false
+      run: dotnet publish . -p:PublishProfile=Linux -p:DebugType=None -p:DebugSymbols=false
     - name: Build LinuxAlpine CLI
-      run: dotnet publish TwitchDownloaderCLI -p:PublishProfile=LinuxAlpine -p:DebugType=None -p:DebugSymbols=false
+      run: dotnet publish . -p:PublishProfile=LinuxAlpine -p:DebugType=None -p:DebugSymbols=false
     - name: Build LinuxArm CLI
-      run: dotnet publish TwitchDownloaderCLI -p:PublishProfile=LinuxArm -p:DebugType=None -p:DebugSymbols=false
+      run: dotnet publish . -p:PublishProfile=LinuxArm -p:DebugType=None -p:DebugSymbols=false
         
     - name: Zip Windows CLI
       uses: vimtor/action-zip@v1
       with:
-        files: TwitchDownloaderCLI/bin/Release/net6.0/publish/Windows/TwitchDownloaderCLI.exe
-        dest: TwitchDownloaderCLI-${{ github.event.inputs.release_tag }}-Windows-x64.zip
+        files: bin/Release/net6.0/publish/Windows/TwitchDownloaderCLI.exe
+        dest: -${{ github.event.inputs.release_tag }}-Windows-x64.zip
         
     - name: Zip Linux CLI
       uses: vimtor/action-zip@v1
